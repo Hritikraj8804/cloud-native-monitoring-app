@@ -1,6 +1,6 @@
 # cloud-native-monitoring-app
 
-# System Monitoring Dashboard
+## System Monitoring Dashboard
 
 This project provides a simple, web-based system monitoring dashboard using Flask and Plotly.js to visualize CPU, memory, and disk usage.
 
