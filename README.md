@@ -112,3 +112,22 @@ system-monitoring-dashboard/
 │   └── index.html  # HTML template for the dashboard  
 └── README.md       # Project documentation  
 
+
+## Usage
+
+* The dashboard displays three gauge charts: CPU Utilization, Memory Utilization, and Disk Utilization.
+* If any of the resource usage values exceed 80%, a warning message will be displayed at the bottom of the page.
+* The gauges are interactive. Hover over them to see the exact numeric value.
+
+## Customization
+
+* **Threshold:** Modify the threshold value in `app.py` to change the warning trigger.
+* **Styling:** Customize the appearance of the dashboard by modifying the CSS in `index.html`.
+* **Additional Metrics:** Extend the application to monitor other system metrics by adding more functions and gauges.
+* **Gauge styling:** The colors and general gauge styling can be changed inside of index.html.
+
+## Notes
+
+* This application provides basic system monitoring. For more advanced monitoring, consider using dedicated monitoring tools like Prometheus, Grafana, or AWS CloudWatch.
+* Ensure that the server running this application has the necessary permissions to access system resource information.
+* Plotly.js is loaded from a CDN. For offline use, you'll need to download and include the library locally.
