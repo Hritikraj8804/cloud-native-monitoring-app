@@ -4,6 +4,8 @@
 
 This project provides a simple, web-based system monitoring dashboard using Flask and Plotly.js to visualize CPU, memory, and disk usage.
 
+![Screenshot 2025-04-01 225634](https://github.com/user-attachments/assets/396f6431-16a6-4aa7-b303-35066b92385f)
+
 ## Features
 
 * **Real-time System Metrics:** Displays CPU, memory, and disk utilization in interactive gauge charts.
@@ -104,10 +106,9 @@ This project provides a simple, web-based system monitoring dashboard using Flas
 
 ## Project Structure
 
-system-monitoring-dashboard/
-├── app.py          # Flask application and backend logic
-├── templates/
-│   └── index.html  # HTML template for the dashboard
-└── README.md       # Project documentation
+system-monitoring-dashboard/  
+├── app.py          # Flask application and backend logic  
+├── templates/  
+│   └── index.html  # HTML template for the dashboard  
+└── README.md       # Project documentation  
 
-![Screenshot 2025-04-01 225634](https://github.com/user-attachments/assets/396f6431-16a6-4aa7-b303-35066b92385f)
