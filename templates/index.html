@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Monitoring Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+    
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+    
+        .gauge-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+    
+        .gauge-item {
+            flex: 1 1 300px; /* Flexible items with minimum width of 300px */
+            max-width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            min-height: 250px;
+        }
+    
+        .plotly-graph-div {
+            width: 100% !important; /* Force full width */
+            height: 100% !important; /* Force full height */
+            min-height: 250px;
+        }
+    
+        .plotly-graph-div .js-plotly-plot {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            text-align: center;
+        }
+    
+        @media (max-width: 600px) {
+            .gauge-item {
+                flex: 1 1 100%;
+                min-height: 200px;
+            }
+            
+            .plotly-graph-div {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>System Monitoring Dashboard</h1>
+        <div class="gauge-container">
+            <div id="cpu-gauge" class="plotly-graph-div"></div>
+            <div id="mem-gauge" class="plotly-graph-div"></div>
+            <div id="dsk-gauge" class="plotly-graph-div"></div>
+        </div>
+        {% if message %}
+        <div class="alert">{{ message }}</div>
+        {% endif %}
+    </div>
+
+    <script>
+        function createGauge(id, value, title) {
+            return {
+                type: "indicator",
+                mode: "gauge+number",
+                value: value,
+                gauge: {
+                    axis: { range: [null, 100] },
+                    bar: { color: "#007bff" },
+                    bgcolor: "white",
+                    borderwidth: 2,
+                    bordercolor: "#ccc",
+                    steps: [
+                        { range: [0, 50], color: "#d9f0a3" },
+                        { range: [50, 85], color: "#ffeb84" },
+                        { range: [85, 100], color: "#ff5f5f" }
+                    ],
+                    threshold: {
+                        line: { color: "red", width: 4 },
+                        thickness: 0.75,
+                        value: value
+                    }
+                },
+                title: { text: title }
+            };
+        }
+
+        var cpuGauge = createGauge('cpu-gauge', {{ cpu_usage }}, "CPU Utilization");
+        var memGauge = createGauge('mem-gauge', {{ memory_usage }}, "Memory Utilization");
+        var dskGauge = createGauge('dsk-gauge', {{ disk_usage }}, "Disk Utilization");
+
+        Plotly.newPlot('cpu-gauge', [cpuGauge]);
+        Plotly.newPlot('mem-gauge', [memGauge]);
+        Plotly.newPlot('dsk-gauge', [dskGauge]);
+    </script>
+</body>
+</html>
