@@ -2,8 +2,7 @@
 
 ## System Monitoring Dashboard
 
-This project provides a simple, web-based system monitoring dashboard using Flask and Plotly.js to visualize CPU, memory, and disk usage.
-
+A simple yet effective web application, this project uses Flask and Plotly.js to create a system monitoring dashboard for visualizing CPU, memory, and disk usage.
 ![Screenshot 2025-04-01 225634](https://github.com/user-attachments/assets/396f6431-16a6-4aa7-b303-35066b92385f)
 
 ## Features
